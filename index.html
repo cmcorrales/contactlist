@@ -1,0 +1,30 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!--1.) create form where users will input and then submit information-->
+first name: <input type="text" id="firstname"><br>
+last name: <input type="text" id="lastname"><br>
+phone number: <input type="text" id="phonenumber"><br>
+city/state: <input type="text" id="citystate"><br>
+<input type="submit" id="finish">
+<!--2.) create a list that will display the information entered by users-->
+<ul id="contactlist"></ul>
+<div id="contactinfo" style="background: #cccccc; width: 100%; padding: 20px;">
+<script>
+var count = 0;
+var contacts = [];
+// 3.) create a click function that will add the information entered to the list above
+$("input#finish").click(function(){ //when user clicks "submit", list item with firstname is added to contact list and all info is pushed to var contacts
+  var firstname = $("#firstname").val();
+  var lastname = $("#lastname").val();
+  var phonenumber = $("#phonenumber").val();
+  var citystate= $("#citystate").val();
+  $("#contactlist").append("<li id="+count+">"+firstname+"</li>") //why insert count in <li> id?
+  contacts.push({firstname,lastname, phonenumber, citystate}); //.push adds items to an array, changing length accordingly
+  console.log(contacts);
+  count++;
+  $("li").click(function(){ //when you click on an li element, add all information to the list displayed
+    console.log(contacts);
+    var thisid = $(this).attr("id");
+    $("#contactinfo").html("firstname: "+contacts[thisid]/* <-- don't understand this */.firstname+"<br>lastname: "+contacts[thisid].lastname+"<br>phonenumber: "+contacts[thisid].phonenumber+"<br>citystate: "+contacts[thisid].citystate) //check
+  })
+})
+</script>
